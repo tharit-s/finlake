@@ -85,7 +85,9 @@ in `config.yaml` changes conceptually.
 1. **Run it end-to-end**, then read `reports/financial_report.md`
 2. **Read `lake.py`** — the IO layer; understand `write_partitioned` and how
    partition columns are reconstructed on read
-3. **Read `silver.py`** — pure-function cleaning steps chained with `.pipe()`
+3. **Read `silver.py`** — pure-function cleaning steps chained with `.pipe()`,
+   or walk through them interactively in
+   `notebooks/01_explore_silver.ipynb` (`uv run jupyter lab`)
 4. **Break something on purpose**: change a rule in `config.yaml`
    (e.g. remove "THB" from allowed currencies), re-run silver, watch the DQ
    summary change

@@ -43,7 +43,11 @@ uv run ruff check src/                   # lint
 ## Current status / where we left off
 - [x] Bronze, silver, gold zones implemented and verified end-to-end
 - [x] 5 tests passing in tests/test_silver.py
-- [x] Markdown report generation working
+- [x] Markdown report generation working (needs `tabulate` — added as a
+  runtime dep for `DataFrame.to_markdown()`)
+- [x] `notebooks/01_explore_silver.ipynb` — guided, step-by-step walkthrough
+  of the `silver.py`/`gold.py` pure functions on real bronze data (needs
+  `matplotlib`, added as a **dev** dep since only the notebook plots)
 - [ ] Not yet done: weekly_summary gold table (exercise)
 - [ ] Not yet done: account_id format validation rule
 - [ ] Not yet done: currency conversion in silver
