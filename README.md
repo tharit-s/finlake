@@ -13,7 +13,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh        # macOS/Linux
 # powershell -c "irm https://astral.sh/uv/install.ps1 | iex"   # Windows
 
 # 2. Clone and set up — uv reads pyproject.toml + uv.lock and builds .venv
-git clone <your-repo-url> && cd finlake-pipeline
+git clone <your-repo-url> && cd finlake
 uv sync
 
 # 3. Run the full pipeline: generate -> bronze -> silver -> gold -> report
