@@ -1,0 +1,26 @@
+# finlake configuration — single source of truth for the pipeline
+lake:
+  root: "data"                # local root; later swap for s3://bucket, gs://bucket, abfs://container
+  format: "parquet"           # parquet (default) | csv (fallback for restricted environments)
+  zones:
+    bronze: "bronze"          # raw, immutable, as-ingested
+    silver: "silver"          # cleaned, validated, typed, deduplicated
+    gold: "gold"              # aggregated, business-ready
+
+partitioning:
+  # Hive-style partitioning: data/silver/transactions/year=2026/month=07/part-*.parquet
+  # This exact layout is natively understood by AWS Athena/Glue, GCP BigQuery external
+  # tables, Azure Synapse, Spark, DuckDB, and Trino — which is what makes cloud
+  # migration a copy operation instead of a rewrite.
+  keys: ["year", "month"]
+
+quality:
+  # Silver-zone validation rules
+  required_columns: ["transaction_id", "timestamp", "account_id", "merchant", "category", "amount", "currency", "status"]
+  allowed_status: ["completed", "pending", "failed", "refunded"]
+  allowed_currencies: ["USD", "EUR", "GBP", "THB"]
+  amount_min: -100000
+  amount_max: 100000
+
+reporting:
+  output_dir: "reports"

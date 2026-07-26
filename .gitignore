@@ -1,0 +1,31 @@
+# --- environment (uv creates .venv/) ---
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# --- secrets: NEVER commit these ---
+.env
+*.json
+!package.json
+service_account*.json
+*credentials*
+*.pem
+*.key
+
+# --- data: the lake is generated, not versioned ---
+data/bronze/
+data/silver/
+data/gold/
+data/_landing_sample.csv
+
+# --- generated reports ---
+reports/*.md
+
+# --- notebooks: keep, but strip output before commit (see README) ---
+.ipynb_checkpoints/
+
+# --- OS noise ---
+.DS_Store
+Thumbs.db
